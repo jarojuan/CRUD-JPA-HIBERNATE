@@ -34,7 +34,7 @@ public class Cliente {
 	@Temporal(TemporalType.TIMESTAMP)	//Indica que guardará la fecha y la hora
 	private Date fechaRegistro;
 	@Temporal(TemporalType.TIMESTAMP)	//Indica que guardará la fecha y la hora
-	private Date fechaActualización;
+	private Date fechaActualizacion;
 
 	public Long getId() {
 		return id;
@@ -92,19 +92,19 @@ public class Cliente {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public Date getFechaActualización() {
-		return fechaActualización;
+	public Date getFechaActualizacion() {
+		return fechaActualizacion;
 	}
 
-	public void setFechaActualización(Date fechaActualización) {
-		this.fechaActualización = fechaActualización;
+	public void setFechaActualización(Date fechaActualizacion) {
+		this.fechaActualizacion = fechaActualizacion;
 	}
 
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion
 				+ ", email=" + email + ", telefono=" + telefono + ", fechaRegistro=" + fechaRegistro
-				+ ", fechaActualización=" + fechaActualización + "]";
+				+ ", fechaActualización=" + fechaActualizacion + "]";
 	}
 
 }

@@ -39,11 +39,11 @@ public class ClienteDAO {
 	}
 	
 	//Obtener un solo cliente
-	public Cliente buscarCliente(int id) {
+	public Cliente buscarCliente(Long id) {
 		Cliente cliente = new Cliente();
 		//El método find encuentra un registro de la bd que coincida con el parametro pasado
 		cliente = entity.find(Cliente.class, id);
-		JPAUtil.shutdown();
+		//JPAUtil.shutdown();
 		return cliente;
 	}
 	
@@ -51,10 +51,11 @@ public class ClienteDAO {
 	public List<Cliente> mostrarClientes(){
 		List<Cliente> listaClientes = new ArrayList<Cliente>();
 		//JQL (Es como el SQL que usa Hibernate)
+		//La query se hace contra el Modelo (Entity Cliente.java)
 		//Query query = entity.createQuery("SELECT * FROM Cliente c");
 		Query query = entity.createQuery("SELECT c FROM Cliente c");
 		listaClientes = query.getResultList();
-		return null;
+		return listaClientes;
 	}
 	
 }
