@@ -12,6 +12,7 @@
     	<h:outputText value="Lista Clientes"></h:outputText>
     </h2>
     <h:form>
+		<h:commandButton action="#{clienteBean.nuevo()}" value="Nuevo Cliente"></h:commandButton>
     	<!-- En el value, se llama al @ManagedBean por su name y se recoge sus informacion -->
     	<!-- En var se almacena cada objeto de la lista -->
 	    <h:dataTable value="#{clienteBean.obtenerClientes()}" var="cliente" border="1">
@@ -53,12 +54,6 @@
 	    		<h:commandButton action="#{clienteBean.editar(cliente.id)}" value="Editar"></h:commandButton>
    				<h:commandButton action="#{clienteBean.eliminar(cliente.id)}" value="Eliminar"></h:commandButton>	
 	    	</h:column>
-	    	<!--  
-	    	<h:column>
-	    		<f:facet name="header">ELIMINAR</f:facet>
-   				<h:commandButton action="#{clienteBean.eliminar(cliente.id)}" value="Eliminar"></h:commandButton>	
-	    	</h:column>
-	    	-->
 	    </h:dataTable>
     </h:form>
 </h:body>

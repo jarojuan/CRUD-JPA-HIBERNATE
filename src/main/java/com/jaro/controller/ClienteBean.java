@@ -1,5 +1,6 @@
 package com.jaro.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +20,26 @@ public class ClienteBean {
 	
 	private ClienteDAO clienteDAO = new ClienteDAO();
 	private Cliente cliente = new Cliente();
+	private Date fechaActual= new Date();
 	
 	public List<Cliente> obtenerClientes(){
 		return clienteDAO.mostrarClientes();
+	}
+	
+	public String nuevo() {
+		//La coleccion Map será una sesión que estará abierta durante toda la ejecucion de la aplicacion
+		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		//Se pasa el objeto cliente con el nombre "cliente" (así lo recibirá la vista nuevoCliente)
+		sessionMap.put("cliente", cliente);
+		return "/faces/nuevoCliente.xhtml";
+	}
+	
+	public String guardar(Cliente cliente) {
+		//Guarda la fecha de registro
+		cliente.setFechaRegistro(new java.sql.Date(fechaActual.getTime()));
+		//Llama al metodo CRUD guardar
+		clienteDAO.guardar(cliente);
+		return "/faces/index.xhtml";
 	}
 	
 	public String editar(Long id) {
@@ -37,6 +55,8 @@ public class ClienteBean {
 	}
 	
 	public String actualizar(Cliente cliente) {
+		//Guarda la fecha de actualizacion
+		cliente.setFechaActualización(new java.sql.Date(fechaActual.getTime()));
 		//Se llama al metodo CRUD editar
 		clienteDAO.editar(cliente);
 		return "/faces/index.xhtml";

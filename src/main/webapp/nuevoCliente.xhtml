@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<title>Nuevo Cliente</title>
+</h:head>
+<h:body>
+	<h2>
+    	<h:outputText value="Añadir cliente"></h:outputText>
+    </h2>
+    	<h:form>
+		<h:panelGrid columns="2" cellspacing="20" border="1">
+			<f:facet name="header">
+				<h:outputText value="Añadir Cliente"></h:outputText>
+			</f:facet>
+			
+			<h:outputText value="NOMBRE"></h:outputText>
+			
+			<h:inputText value="#{cliente.nombres}"></h:inputText>
+			
+			<h:outputText value="APELLIDO"></h:outputText>
+			<h:inputText value="#{cliente.apellidos}"></h:inputText>
+			
+			<h:outputText value="DIRECCION"></h:outputText>
+			<h:inputText value="#{cliente.direccion}"></h:inputText>
+			
+			<h:outputText value="TELEFONO"></h:outputText>
+			<h:inputText value="#{cliente.telefono}"></h:inputText>
+			
+			<h:outputText value="EMAIL"></h:outputText>
+			<h:inputText value="#{cliente.email}"></h:inputText>
+			
+			<f:facet name="footer">
+				<h:commandButton action="#{clienteBean.guardar(cliente)}" value="Guardar"></h:commandButton>
+			</f:facet>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

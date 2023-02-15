@@ -27,7 +27,7 @@ public class ClienteDAO {
 		//Guarda los datos en la bd y cierra la transaccion
 		entity.getTransaction().commit();
 		//Cierra la conexio con la bd
-		JPAUtil.shutdown();
+		//JPAUtil.shutdown();
 	}
 	
 	//Editar clientes
