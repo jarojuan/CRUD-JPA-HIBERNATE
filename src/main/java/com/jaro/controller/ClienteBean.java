@@ -17,8 +17,8 @@ import com.jaro.model.Cliente;
 @RequestScoped
 public class ClienteBean {
 	
-	ClienteDAO clienteDAO = new ClienteDAO();
-	Cliente cliente = new Cliente();
+	private ClienteDAO clienteDAO = new ClienteDAO();
+	private Cliente cliente = new Cliente();
 	
 	public List<Cliente> obtenerClientes(){
 		return clienteDAO.mostrarClientes();
@@ -39,6 +39,12 @@ public class ClienteBean {
 	public String actualizar(Cliente cliente) {
 		//Se llama al metodo CRUD editar
 		clienteDAO.editar(cliente);
+		return "/faces/index.xhtml";
+	}
+	
+	public String eliminar(Long id) {
+		clienteDAO.eliminar(id);
+		System.out.println("Cliente eliminado");
 		return "/faces/index.xhtml";
 	}
 	

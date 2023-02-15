@@ -15,10 +15,11 @@ import com.jaro.model.JPAUtil;
 public class ClienteDAO {
 	
 	//El objeto EntityManager permite crear los CRUD mediante Hibernate
-	EntityManager entity = JPAUtil.getEntityManagerFactory().createEntityManager();
+	private EntityManager entity = JPAUtil.getEntityManagerFactory().createEntityManager();
+	private Cliente c = new Cliente();
 	
 	//Guardar nuevo cliente
-	private void guardar(Cliente cliente) {
+	public void guardar(Cliente cliente) {
 		//Inicia la transaccion
 		entity.getTransaction().begin();
 		//Persiste el objeto en la bd (Mapea los datos hacia sus campos correspondientes segun las anotaciones de Cliente.java)
@@ -38,13 +39,22 @@ public class ClienteDAO {
 		//JPAUtil.shutdown();
 	}
 	
+	//Eliminar un cliente
+	public void eliminar(Long id) {
+		//El método find encuentra un registro de la bd que coincida con el parametro pasado
+		c = entity.find(Cliente.class, id);
+		entity.getTransaction().begin();
+		//El método remove elimina de la bd el objeto pasado
+		entity.remove(c);
+		entity.getTransaction().commit();
+	}
+	
 	//Obtener un solo cliente
 	public Cliente buscarCliente(Long id) {
-		Cliente cliente = new Cliente();
 		//El método find encuentra un registro de la bd que coincida con el parametro pasado
-		cliente = entity.find(Cliente.class, id);
+		c = entity.find(Cliente.class, id);
 		//JPAUtil.shutdown();
-		return cliente;
+		return c;
 	}
 	
 	//Obtener todos los clientes
@@ -52,7 +62,7 @@ public class ClienteDAO {
 		List<Cliente> listaClientes = new ArrayList<Cliente>();
 		//JQL (Es como el SQL que usa Hibernate)
 		//La query se hace contra el Modelo (Entity Cliente.java)
-		//Query query = entity.createQuery("SELECT * FROM Cliente c");
+		//Query query = entity.createQuery("SELECT cli FROM Cliente cli");
 		Query query = entity.createQuery("SELECT c FROM Cliente c");
 		listaClientes = query.getResultList();
 		return listaClientes;
