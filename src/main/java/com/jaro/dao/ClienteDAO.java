@@ -35,7 +35,7 @@ public class ClienteDAO {
 		//Edita el cliente que coincida con el id del cliente pasado
 		entity.merge(cliente);
 		entity.getTransaction().commit();
-		JPAUtil.shutdown();
+		//JPAUtil.shutdown();
 	}
 	
 	//Obtener un solo cliente
